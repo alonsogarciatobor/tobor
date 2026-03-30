@@ -336,7 +336,7 @@ body {
 <header class="topbar">
   <div class="topbar-inner">
     <a href="tobor.html" class="back-link">← tobor.digital</a>
-    <a href="mailto:alonso.garcia@tobor.digital" class="topbar-cta">Get in touch</a>
+    <a href="mailto:alonso.garcia&#64;tobor.digital" class="topbar-cta">Get in touch</a>
   </div>
 </header>
 
@@ -575,11 +575,11 @@ body {
       <div class="sec-eyebrow">Get In Touch</div>
       <div class="sec-title">Contact</div>
     </div>
-    <a href="/cdn-cgi/l/email-protection#89e8e5e6e7fae6a7eee8fbeae0e8c9fde6ebe6fba7ede0eee0fde8e5" class="contact-single reveal">
+    <a href="mailto:alonso.garcia&#64;tobor.digital" class="contact-single reveal">
       <div class="contact-icon">✉️</div>
       <div>
         <div class="contact-label">Work Email</div>
-        <div class="contact-value"><span class="__cf_email__" data-cfemail="c6a7aaa9a8b5a9e8a1a7b4a5afa786b2a9a4a9b4e8a2afa1afb2a7aa">[email&#160;protected]</span></div>
+        <div class="contact-value">alonso.garcia&#64;tobor.digital</div>
       </div>
     </a>
   </div>
@@ -593,7 +593,7 @@ body {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
@@ -604,4 +604,15 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      entry.target
+      entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.07 + 's';
+  observer.observe(el);
+});
+</script>
