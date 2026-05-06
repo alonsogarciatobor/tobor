@@ -32,7 +32,7 @@
     background: var(--pink); border-radius: 50%;
     position: fixed; pointer-events: none; z-index: 9999;
   }
- 
+
   /* NAV */
   nav {
     position: fixed; top:0; left:0; right:0; z-index:100;
@@ -61,7 +61,7 @@
     transition:all 0.2s; letter-spacing:0.05em;
   }
   .lang-btn.active { background:var(--pink); color:var(--white); }
- 
+
   /* HERO */
   .hero {
     min-height:100vh; display:flex; align-items:center;
@@ -79,7 +79,7 @@
     top:5%; right:-80px; animation:blobFloat 6s ease-in-out infinite;
   }
   @keyframes blobFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-28px)} }
- 
+
   .hero-content { position:relative; z-index:2; max-width:640px; }
   .hero-badge {
     display:inline-flex; align-items:center; gap:0.6rem;
@@ -94,7 +94,7 @@
     animation:blinkAnim 1.4s ease infinite;
   }
   @keyframes blinkAnim { 0%,100%{opacity:1} 50%{opacity:0.15} }
- 
+
   .hero h1 {
     font-family:'Nunito',sans-serif;
     font-size:clamp(3.2rem, 7vw, 6.5rem);
@@ -134,7 +134,7 @@
     border-radius:100px; cursor:none; transition:all 0.22s; text-decoration:none;
   }
   .btn-outline:hover { background:var(--black); color:var(--white); transform:translateY(-3px); }
- 
+
   .hero-robot {
     position:absolute; right:7%; top:50%; transform:translateY(-50%);
     z-index:2; opacity:0;
@@ -144,7 +144,7 @@
     from{opacity:0;transform:translateY(-44%) scale(0.85)}
     to{opacity:1;transform:translateY(-50%) scale(1)}
   }
- 
+
   /* MARQUEE */
   .marquee-wrap {
     overflow:hidden; border-top:2.5px solid var(--black);
@@ -161,7 +161,7 @@
   }
   .marquee-sep { color:rgba(255,255,255,0.45); font-size:0.9rem; }
   @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
- 
+
   /* SERVICES */
   .services { padding:8rem 4rem; background:var(--white); }
   .section-eyebrow {
@@ -207,7 +207,7 @@
     transition:all 0.2s;
   }
   .service-card:hover .service-tag { background:var(--pink); color:var(--white); }
- 
+
   /* ABOUT */
   .about {
     padding:8rem 4rem; background:var(--black); color:var(--white);
@@ -239,8 +239,86 @@
     margin-bottom:1.5rem; text-transform:uppercase;
   }
   .about-card p { color:var(--gray); font-size:0.9rem; font-weight:600; margin-top:1.2rem; line-height:1.65; }
- 
-  /* CONTACT */
+
+  /* ═══════════════════════════════════════════
+     1) REVIEWS / RATINGS BANNER
+  ═══════════════════════════════════════════ */
+  .reviews-section {
+    padding: 8rem 4rem;
+    background: var(--gray-light);
+    position: relative;
+    overflow: hidden;
+  }
+  .reviews-section::before {
+    content: '';
+    position: absolute; top: -120px; right: -120px;
+    width: 400px; height: 400px;
+    background: var(--pink-glow); border-radius: 50%; filter: blur(80px);
+  }
+  .reviews-inner { max-width: 900px; margin: 0 auto; }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 4rem;
+  }
+  .review-card {
+    background: var(--white); border: 2px solid var(--border);
+    border-radius: 20px; padding: 2rem;
+    transition: all 0.28s;
+    position: relative;
+  }
+  .review-card.pending {
+    opacity: 0.5; border-style: dashed;
+  }
+  .review-card .review-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.7rem; border-radius: 100px;
+  }
+  .review-badge.approved { background: #e6f9f0; color: #1a9e5c; }
+  .review-badge.pending-badge { background: #fff3e0; color: #e67e00; }
+  .review-stars { display: flex; gap: 0.2rem; margin-bottom: 1rem; }
+  .star { font-size: 1.1rem; color: #FFD700; }
+  .star.empty { color: var(--gray-mid); }
+  .review-text {
+    color: var(--gray); font-size: 0.9rem; line-height: 1.65;
+    font-weight: 600; margin-bottom: 1rem; font-style: italic;
+  }
+  .review-author {
+    font-family: 'Space Mono', monospace; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.08em; color: var(--black);
+    text-transform: uppercase;
+  }
+
+  /* Rating submit form */
+  .rating-form-wrap {
+    background: var(--white); border: 2.5px solid var(--border);
+    border-radius: 24px; padding: 3rem; text-align: center;
+  }
+  .rating-form-title {
+    font-family: 'Nunito', sans-serif; font-size: 1.5rem;
+    font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.02em;
+  }
+  .rating-form-sub {
+    color: var(--gray); font-size: 0.9rem; font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  .star-picker {
+    display: flex; gap: 0.6rem; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .star-btn {
+    font-size: 2.2rem; background: none; border: none; cursor: none;
+    transition: transform 0.15s; color: var(--gray-mid);
+    line-height: 1;
+  }
+  .star-btn.active, .star-btn:hover { color: #FFD700; transform: scale(1.2); }
+  .rating-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; text-align: left; }
+  .rating-comment { width: 100%; margin-bottom: 1rem; text-align: left; }
+
+  /* ═══════════════════════════════════════════
+     2) CONTACT (with email via Formspree)
+  ═══════════════════════════════════════════ */
   .contact { padding:8rem 4rem; background:var(--white); }
   .contact-inner { max-width:680px; margin:0 auto; text-align:center; }
   .contact .section-title { font-size:clamp(2rem,5vw,3.8rem); margin-bottom:1rem; }
@@ -255,7 +333,137 @@
   .form-input::placeholder { color:#bbb; }
   .form-input:focus { border-color:var(--pink); background:var(--white); }
   textarea.form-input { resize:vertical; min-height:130px; }
- 
+
+  /* Form success/error messages */
+  .form-msg {
+    display: none; padding: 1rem 1.5rem; border-radius: 12px;
+    font-weight: 700; font-size: 0.95rem; text-align: center;
+  }
+  .form-msg.success { background: #e6f9f0; color: #1a9e5c; border: 2px solid #9de6c4; }
+  .form-msg.error { background: #fff0f0; color: #e53e3e; border: 2px solid #fca5a5; }
+
+  /* ═══════════════════════════════════════════
+     3) PAYMENT SECTION
+  ═══════════════════════════════════════════ */
+  .payment-section {
+    padding: 8rem 4rem;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .payment-section::before {
+    content: '';
+    position: absolute; bottom: -150px; left: -100px;
+    width: 500px; height: 500px;
+    background: rgba(255,62,165,0.08); border-radius: 50%; filter: blur(100px);
+  }
+  .payment-inner { max-width: 900px; margin: 0 auto; }
+  .payment-section .section-eyebrow { color: var(--pink); }
+  .payment-section .section-title { color: var(--white); margin-bottom: 1rem; }
+  .payment-section-sub {
+    color: var(--gray); font-size: 1rem; line-height: 1.75;
+    font-weight: 600; margin-bottom: 3.5rem; max-width: 560px;
+  }
+  .payment-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .payment-card {
+    background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 2.2rem;
+    text-align: center; transition: all 0.28s; cursor: none;
+  }
+  .payment-card:hover {
+    border-color: var(--pink);
+    background: rgba(255,62,165,0.06);
+    transform: translateY(-4px);
+  }
+  .payment-icon {
+    font-size: 2.8rem; margin-bottom: 1.2rem; display: block;
+  }
+  .payment-name {
+    font-family: 'Nunito', sans-serif; font-size: 1.2rem;
+    font-weight: 900; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .payment-desc {
+    color: var(--gray); font-size: 0.85rem; line-height: 1.6; font-weight: 600;
+  }
+  .payment-cta-row {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn-paypal {
+    background: #003087; color: #fff;
+    padding: 1rem 2.4rem; border: none;
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 0.95rem; letter-spacing: 0.04em;
+    border-radius: 100px; cursor: none; transition: all 0.22s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
+    box-shadow: 0 4px 20px rgba(0,48,135,0.4);
+  }
+  .btn-paypal:hover { background: #002060; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,48,135,0.5); }
+  .btn-bank {
+    background: rgba(255,255,255,0.06); color: var(--white);
+    padding: 1rem 2.4rem; border: 2.5px solid rgba(255,255,255,0.2);
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 0.95rem; letter-spacing: 0.04em;
+    border-radius: 100px; cursor: none; transition: all 0.22s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
+  }
+  .btn-bank:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-3px); }
+
+  /* Bank details modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+    z-index: 1000; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white); border-radius: 24px;
+    padding: 3rem; max-width: 480px; width: 90%; position: relative;
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.4rem;
+    background: var(--gray-light); border: none; border-radius: 50%;
+    width: 32px; height: 32px; font-size: 1.1rem; cursor: none;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--gray-mid); }
+  .modal-title {
+    font-family: 'Nunito', sans-serif; font-size: 1.5rem;
+    font-weight: 900; margin-bottom: 0.5rem;
+  }
+  .modal-sub { color: var(--gray); font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; }
+  .bank-detail {
+    background: var(--gray-light); border-radius: 12px;
+    padding: 1rem 1.3rem; margin-bottom: 0.8rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .bank-detail-label {
+    font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    font-weight: 700; color: var(--gray); text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .bank-detail-value {
+    font-family: 'Space Mono', monospace; font-size: 0.9rem;
+    font-weight: 700; color: var(--black);
+  }
+  .copy-btn {
+    background: none; border: none; cursor: none; padding: 0.2rem 0.5rem;
+    color: var(--pink); font-size: 0.8rem; font-weight: 700;
+    font-family: 'Space Mono', monospace; transition: opacity 0.2s;
+  }
+  .copy-btn:hover { opacity: 0.7; }
+  .modal-note {
+    margin-top: 1.5rem; padding: 1rem 1.2rem;
+    background: #fff3e0; border-radius: 12px; border-left: 4px solid #f59e0b;
+    font-size: 0.85rem; color: #92400e; font-weight: 600; line-height: 1.6;
+  }
+
   /* FOOTER */
   footer {
     padding:2.5rem 4rem; background:var(--black); color:var(--white);
@@ -271,45 +479,49 @@
   .footer-links { display:flex; gap:2rem; }
   .footer-links a { color:var(--gray); text-decoration:none; font-size:0.82rem; font-weight:700; transition:color 0.2s; }
   .footer-links a:hover { color:var(--pink); }
- 
+
   @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
   .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease, transform 0.65s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
- 
+
   @media(max-width:900px) {
     nav { padding:1rem 1.5rem; }
     .nav-links { display:none; }
     .hero { padding:7rem 1.5rem 3rem; }
     .hero-robot { display:none; }
-    .services,.about,.contact { padding:5rem 1.5rem; }
+    .services,.about,.contact,.reviews-section,.payment-section { padding:5rem 1.5rem; }
     .services-grid { grid-template-columns:1fr; }
     .about-inner { grid-template-columns:1fr; gap:3rem; }
     .about-visual { display:none; }
     .form-row { grid-template-columns:1fr; }
+    .reviews-grid { grid-template-columns:1fr; }
+    .rating-form-grid { grid-template-columns:1fr; }
+    .payment-grid { grid-template-columns:1fr; }
     footer { padding:2rem 1.5rem; flex-direction:column; gap:1rem; text-align:center; }
   }
 </style>
 </head>
 <body>
- 
+
 <div class="cursor" id="cursor"></div>
- 
+
 <nav>
   <a href="#" class="nav-logo">
-    <!-- LOGO 1: Navbar -->
     <img src="tobor_logo.png" alt="Tobor Logo" style="height:52px;width:auto;object-fit:contain;mix-blend-mode:multiply;">
   </a>
   <div class="nav-links">
     <a href="#services" data-en="Services" data-es="Servicios">Services</a>
     <a href="#about" data-en="About Us" data-es="Nosotros">About Us</a>
+    <a href="#reviews" data-en="Reviews" data-es="Reseñas">Reviews</a>
     <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    <a href="#payment" data-en="Pay" data-es="Pagar">Pay</a>
   </div>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </nav>
- 
+
 <section class="hero">
   <div class="hero-dots"></div>
   <div class="hero-blob"></div>
@@ -326,15 +538,14 @@
     </div>
   </div>
   <div class="hero-robot">
-    <!-- LOGO 2: Hero floating logo -->
     <img src="tobor_logo.png" alt="Tobor Robot" style="width:320px;height:auto;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 20px 40px rgba(255,62,165,0.3));">
   </div>
 </section>
- 
+
 <div class="marquee-wrap">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
- 
+
 <section class="services" id="services">
   <div class="section-eyebrow reveal" data-en="What we do" data-es="Lo que hacemos">What we do</div>
   <h2 class="section-title reveal" data-en="Services built<br>for the digital age." data-es="Servicios hechos<br>para la era digital.">Services built<br>for the digital age.</h2>
@@ -369,7 +580,7 @@
     </div>
   </div>
 </section>
- 
+
 <section class="about" id="about">
   <div class="about-inner">
     <div>
@@ -397,73 +608,405 @@
     </div>
   </div>
 </section>
- 
+
+<!-- ═══════════════════════════════════════════
+     1) REVIEWS & RATINGS SECTION
+════════════════════════════════════════════ -->
+<section class="reviews-section" id="reviews">
+  <div class="reviews-inner">
+    <div class="section-eyebrow reveal" data-en="Client Reviews" data-es="Reseñas de Clientes">Client Reviews</div>
+    <h2 class="section-title reveal" data-en="What our clients<br>are saying." data-es="Lo que dicen<br>nuestros clientes.">What our clients<br>are saying.</h2>
+
+    <!-- Approved reviews display -->
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Submit a review form -->
+    <div class="rating-form-wrap reveal">
+      <div class="rating-form-title" data-en="Leave a review" data-es="Deja tu reseña">Leave a review</div>
+      <p class="rating-form-sub" data-en="Your feedback helps us improve. Reviews are verified before being published." data-es="Tu opinión nos ayuda a mejorar. Las reseñas se verifican antes de publicarse.">Your feedback helps us improve. Reviews are verified before being published.</p>
+
+      <div class="star-picker" id="starPicker" role="group" aria-label="Rating">
+        <button class="star-btn" data-val="1" aria-label="1 star">★</button>
+        <button class="star-btn" data-val="2" aria-label="2 stars">★</button>
+        <button class="star-btn" data-val="3" aria-label="3 stars">★</button>
+        <button class="star-btn" data-val="4" aria-label="4 stars">★</button>
+        <button class="star-btn" data-val="5" aria-label="5 stars">★</button>
+      </div>
+
+      <div class="rating-form-grid">
+        <input type="text" class="form-input" id="reviewName" data-placeholder-en="Your name" data-placeholder-es="Tu nombre" placeholder="Your name">
+        <input type="email" class="form-input" id="reviewEmail" data-placeholder-en="Your email" data-placeholder-es="Tu correo" placeholder="Your email">
+      </div>
+      <textarea class="form-input rating-comment" id="reviewComment" rows="4" data-placeholder-en="Share your experience with Tobor..." data-placeholder-es="Comparte tu experiencia con Tobor..." placeholder="Share your experience with Tobor..."></textarea>
+      <button class="btn-pink" style="width:100%;justify-content:center;padding:1.1rem;font-size:1rem;border-radius:12px" onclick="submitReview()" data-en="Submit review →" data-es="Enviar reseña →">Submit review →</button>
+      <div class="form-msg" id="reviewMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2) CONTACT (email via Formspree)
+════════════════════════════════════════════ -->
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div class="section-eyebrow reveal" style="justify-content:center" data-en="Let's talk" data-es="Hablemos">Let's talk</div>
     <h2 class="section-title reveal" data-en="Ready to grow<br>your brand?" data-es="¿Listo para hacer<br>crecer tu marca?">Ready to grow<br>your brand?</h2>
     <p class="contact-sub reveal" data-en="Tell us about your project and we'll get back to you within 24 hours." data-es="Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.">Tell us about your project and we'll get back to you within 24 hours.</p>
-    <div class="contact-form reveal">
+
+    <!--
+      ╔══════════════════════════════════════════════╗
+      ║  HOW TO ACTIVATE EMAIL DELIVERY:             ║
+      ║  1. Go to https://formspree.io               ║
+      ║  2. Sign up free (no server needed)          ║
+      ║  3. Create a new form → copy your Form ID    ║
+      ║  4. Replace xlgznnzj below with your ID  ║
+      ║  e.g. action="https://formspree.io/f/abc123" ║
+      ╚══════════════════════════════════════════════╝
+    -->
+    <form
+      class="contact-form reveal"
+      id="contactForm"
+      action="https://formspree.io/f/xlgznnzj"
+      method="POST"
+      onsubmit="handleContactSubmit(event)"
+    >
       <div class="form-row">
-        <input type="text" class="form-input" data-placeholder-en="Your name" data-placeholder-es="Tu nombre" placeholder="Your name">
-        <input type="email" class="form-input" data-placeholder-en="Your email" data-placeholder-es="Tu correo" placeholder="Your email">
+        <input type="text" name="name" class="form-input" data-placeholder-en="Your name" data-placeholder-es="Tu nombre" placeholder="Your name" required>
+        <input type="email" name="email" class="form-input" data-placeholder-en="Your email" data-placeholder-es="Tu correo" placeholder="Your email" required>
       </div>
-      <input type="text" class="form-input" data-placeholder-en="Service you're interested in" data-placeholder-es="Servicio que te interesa" placeholder="Service you're interested in">
-      <textarea class="form-input" data-placeholder-en="Tell us about your project..." data-placeholder-es="Cuéntanos sobre tu proyecto..." placeholder="Tell us about your project..."></textarea>
-      <button class="btn-pink" style="width:100%;justify-content:center;padding:1.1rem;font-size:1rem;border-radius:12px" data-en="Send message →" data-es="Enviar mensaje →">Send message →</button>
+      <input type="text" name="service" class="form-input" data-placeholder-en="Service you're interested in" data-placeholder-es="Servicio que te interesa" placeholder="Service you're interested in">
+      <textarea name="message" class="form-input" data-placeholder-en="Tell us about your project..." data-placeholder-es="Cuéntanos sobre tu proyecto..." placeholder="Tell us about your project..." rows="5" required></textarea>
+      <!-- Hidden field to identify form source -->
+      <input type="hidden" name="_subject" value="New Tobor Project Inquiry 🚀">
+      <input type="hidden" name="_next" value="">
+      <button type="submit" class="btn-pink" style="width:100%;justify-content:center;padding:1.1rem;font-size:1rem;border-radius:12px" data-en="Send message →" data-es="Enviar mensaje →">Send message →</button>
+      <div class="form-msg" id="contactMsg"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     3) PAYMENT SECTION
+════════════════════════════════════════════ -->
+<section class="payment-section" id="payment">
+  <div class="payment-inner">
+    <div class="section-eyebrow reveal" data-en="Payments" data-es="Pagos">Payments</div>
+    <h2 class="section-title reveal" data-en="Easy &amp; secure<br>payment options." data-es="Opciones de pago<br>fáciles y seguras.">Easy &amp; secure<br>payment options.</h2>
+    <p class="payment-section-sub reveal" data-en="Pay for your Tobor services securely via PayPal or direct bank transfer. All transactions are safe and confirmed by receipt." data-es="Paga tus servicios Tobor de forma segura vía PayPal o transferencia bancaria directa. Todas las transacciones son seguras y confirmadas.">Pay for your Tobor services securely via PayPal or direct bank transfer. All transactions are safe and confirmed by receipt.</p>
+
+    <div class="payment-grid reveal">
+      <div class="payment-card">
+        <span class="payment-icon">💳</span>
+        <div class="payment-name">PayPal</div>
+        <p class="payment-desc" data-en="Fast, secure online payment. Pay with your PayPal balance, card, or bank account." data-es="Pago en línea rápido y seguro. Paga con tu saldo PayPal, tarjeta o cuenta bancaria.">Fast, secure online payment. Pay with your PayPal balance, card, or bank account.</p>
+      </div>
+      <div class="payment-card">
+        <span class="payment-icon">🏦</span>
+        <div class="payment-name" data-en="Bank Transfer" data-es="Transferencia Bancaria">Bank Transfer</div>
+        <p class="payment-desc" data-en="Direct bank-to-bank transfer. Click below to view account details and reference instructions." data-es="Transferencia directa de banco a banco. Haz clic para ver los datos de cuenta.">Direct bank-to-bank transfer. Click below to view account details and reference instructions.</p>
+      </div>
+      <div class="payment-card">
+        <span class="payment-icon">🔒</span>
+        <div class="payment-name" data-en="Secure & Confirmed" data-es="Seguro y Confirmado">Secure & Confirmed</div>
+        <p class="payment-desc" data-en="Every payment is followed by an email confirmation and invoice from Tobor within 24 hours." data-es="Cada pago es seguido de una confirmación por correo y factura de Tobor en 24 horas.">Every payment is followed by an email confirmation and invoice from Tobor within 24 hours.</p>
+      </div>
+    </div>
+
+    <div class="payment-cta-row reveal">
+      <!--
+        ╔══════════════════════════════════════════════════╗
+        ║  HOW TO SET UP PAYPAL:                           ║
+        ║  1. Log into PayPal → Tools → PayPal Buttons     ║
+        ║  2. Create a "Pay Now" button                    ║
+        ║  3. Replace the href below with your PayPal.me   ║
+        ║     link OR the generated button URL             ║
+        ║  e.g. href="https://paypal.me/YourPayPalUsername"║
+        ╚══════════════════════════════════════════════════╝
+      -->
+      <a href="https://paypal.me/YOUR_PAYPAL_USERNAME" target="_blank" class="btn-paypal" data-en="Pay with PayPal 💳" data-es="Pagar con PayPal 💳">Pay with PayPal 💳</a>
+      <button class="btn-bank" onclick="openBankModal()" data-en="🏦 Bank Transfer Details" data-es="🏦 Ver Datos Bancarios">🏦 Bank Transfer Details</button>
     </div>
   </div>
 </section>
- 
+
+<!-- Bank Details Modal -->
+<div class="modal-overlay" id="bankModal" onclick="closeBankModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('bankModal').classList.remove('open')">✕</button>
+    <div class="modal-title" data-en="Bank Transfer Details" data-es="Datos para Transferencia">Bank Transfer Details</div>
+    <p class="modal-sub" data-en="Please include your name + project type as the payment reference." data-es="Por favor incluye tu nombre + tipo de proyecto como referencia del pago.">Please include your name + project type as the payment reference.</p>
+
+    <!--
+      ╔══════════════════════════════════════════════════╗
+      ║  REPLACE THE PLACEHOLDER VALUES BELOW WITH       ║
+      ║  YOUR ACTUAL BANK ACCOUNT DETAILS.               ║
+      ╚══════════════════════════════════════════════════╝
+    -->
+    <div class="bank-detail">
+      <div>
+        <div class="bank-detail-label" data-en="Account Name" data-es="Nombre de Cuenta">Account Name</div>
+        <div class="bank-detail-value" id="bankName">Alonso Garcia / Tobor Digital</div>
+      </div>
+      <button class="copy-btn" onclick="copyField('bankName')">Copy</button>
+    </div>
+    <div class="bank-detail">
+      <div>
+        <div class="bank-detail-label" data-en="Bank Name" data-es="Banco">Bank Name</div>
+        <div class="bank-detail-value" id="bankBankName">YOUR BANK NAME</div>
+      </div>
+      <button class="copy-btn" onclick="copyField('bankBankName')">Copy</button>
+    </div>
+    <div class="bank-detail">
+      <div>
+        <div class="bank-detail-label" data-en="Account Number" data-es="Número de Cuenta">Account Number</div>
+        <div class="bank-detail-value" id="bankAccount">XXXX-XXXX-XXXX-XXXX</div>
+      </div>
+      <button class="copy-btn" onclick="copyField('bankAccount')">Copy</button>
+    </div>
+    <div class="bank-detail">
+      <div>
+        <div class="bank-detail-label">SWIFT / BIC</div>
+        <div class="bank-detail-value" id="bankSwift">XXXXXXXXX</div>
+      </div>
+      <button class="copy-btn" onclick="copyField('bankSwift')">Copy</button>
+    </div>
+    <div class="bank-detail">
+      <div>
+        <div class="bank-detail-label" data-en="Reference" data-es="Referencia">Reference</div>
+        <div class="bank-detail-value" id="bankRef">Your Name + Service Type</div>
+      </div>
+    </div>
+    <div class="modal-note" data-en="⚠️ After your transfer, please send your payment receipt to hello@tobor.digital so we can confirm and start your project." data-es="⚠️ Después de tu transferencia, envía tu comprobante de pago a hello@tobor.digital para que podamos confirmar e iniciar tu proyecto.">⚠️ After your transfer, please send your payment receipt to hello@tobor.digital so we can confirm and start your project.</div>
+  </div>
+</div>
+
 <footer>
-  <!-- LOGO 3: Footer -->
   <img src="tobor_logo.png" alt="Tobor" style="height:44px;width:auto;object-fit:contain;filter:invert(1) brightness(1.8);opacity:0.85;">
   <div class="footer-copy" data-en="© 2025 Tobor Digital Marketing. All rights reserved." data-es="© 2025 Tobor Digital Marketing. Todos los derechos reservados.">© 2025 Tobor Digital Marketing. All rights reserved.</div>
   <div class="footer-links">
     <a href="#services" data-en="Services" data-es="Servicios">Services</a>
     <a href="#about" data-en="About Us" data-es="Nosotros">About Us</a>
+    <a href="#reviews" data-en="Reviews" data-es="Reseñas">Reviews</a>
     <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    <a href="#payment" data-en="Pay" data-es="Pagar">Pay</a>
   </div>
 </footer>
- 
+
 <script>
-  // CURSOR
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX - 7 + 'px';
-    cursor.style.top  = e.clientY - 7 + 'px';
+// ── CURSOR ──────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX - 7 + 'px';
+  cursor.style.top  = e.clientY - 7 + 'px';
+});
+
+// ── MARQUEE ─────────────────────────────────────────
+const items_en = ['Social Media','Graphic Design','Programming & Coding','AI Solutions','Digital Strategy','Brand Identity','Web Development','Content Creation'];
+const items_es = ['Redes Sociales','Diseño Gráfico','Programación','Soluciones con IA','Estrategia Digital','Identidad de Marca','Desarrollo Web','Creación de Contenido'];
+function buildMarquee(lang) {
+  const items = lang === 'es' ? items_es : items_en;
+  const d = [...items,...items,...items];
+  document.getElementById('marqueeTrack').innerHTML = d.map(i => `<div class="marquee-item">${i}<span class="marquee-sep">✦</span></div>`).join('');
+}
+
+// ── LANGUAGE ─────────────────────────────────────────
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
+      else el.innerHTML = val;
+    }
   });
- 
-  // MARQUEE
-  const items_en=['Social Media','Graphic Design','Programming & Coding','AI Solutions','Digital Strategy','Brand Identity','Web Development','Content Creation'];
-  const items_es=['Redes Sociales','Diseño Gráfico','Programación','Soluciones con IA','Estrategia Digital','Identidad de Marca','Desarrollo Web','Creación de Contenido'];
-  function buildMarquee(lang){
-    const items=lang==='es'?items_es:items_en;
-    const d=[...items,...items,...items];
-    document.getElementById('marqueeTrack').innerHTML=d.map(i=>`<div class="marquee-item">${i}<span class="marquee-sep">✦</span></div>`).join('');
+  document.querySelectorAll('[data-placeholder-' + lang + ']').forEach(el => {
+    el.placeholder = el.getAttribute('data-placeholder-' + lang);
+  });
+  buildMarquee(lang);
+  document.documentElement.lang = lang;
+}
+buildMarquee('en');
+
+// ── REVEAL ───────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.1 + 's';
+  obs.observe(el);
+});
+
+// ══════════════════════════════════════════════════════
+// 1) REVIEWS & RATINGS SYSTEM
+// ══════════════════════════════════════════════════════
+
+// Sample approved reviews (replace/extend as you approve real ones)
+const approvedReviews = [
+  {
+    name: "Maria L.",
+    rating: 5,
+    text: "Tobor completely transformed our social media presence. Within 2 months we tripled our engagement. Absolutely recommend!",
+    text_es: "Tobor transformó completamente nuestra presencia en redes sociales. En 2 meses triplicamos el engagement. ¡Lo recomiendo totalmente!"
+  },
+  {
+    name: "James R.",
+    rating: 5,
+    text: "The branding package was stunning. Alonso really understood our vision and delivered beyond expectations.",
+    text_es: "El paquete de branding fue impresionante. Alonso entendió nuestra visión y entregó más allá de lo esperado."
+  },
+  {
+    name: "Sofia M.",
+    rating: 4,
+    text: "Great communication throughout the project. The website they built for us is fast, modern, and exactly what we needed.",
+    text_es: "Excelente comunicación durante todo el proyecto. El sitio web que construyeron es rápido, moderno y exactamente lo que necesitábamos."
   }
- 
-  // LANG
-  function setLang(lang){
-    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===lang.toUpperCase()));
-    document.querySelectorAll('[data-en]').forEach(el=>{
-      const val=el.getAttribute('data-'+lang);
-      if(val){ if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=val; else el.innerHTML=val; }
+];
+
+function renderStars(rating, total = 5) {
+  return Array.from({length: total}, (_, i) =>
+    `<span class="star${i < rating ? '' : ' empty'}">★</span>`
+  ).join('');
+}
+
+function renderReviews(lang = 'en') {
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = approvedReviews.map(r => `
+    <div class="review-card">
+      <span class="review-badge approved">✓ Verified</span>
+      <div class="review-stars">${renderStars(r.rating)}</div>
+      <p class="review-text">"${lang === 'es' && r.text_es ? r.text_es : r.text}"</p>
+      <div class="review-author">${r.name}</div>
+    </div>
+  `).join('');
+}
+renderReviews('en');
+
+// Star picker interaction
+let selectedRating = 0;
+document.querySelectorAll('.star-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    selectedRating = parseInt(btn.dataset.val);
+    document.querySelectorAll('.star-btn').forEach((b, i) => {
+      b.classList.toggle('active', i < selectedRating);
     });
-    document.querySelectorAll('[data-placeholder-'+lang+']').forEach(el=>{ el.placeholder=el.getAttribute('data-placeholder-'+lang); });
-    buildMarquee(lang);
-    document.documentElement.lang=lang;
-  }
-  buildMarquee('en');
- 
-  // REVEAL
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-  },{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.transitionDelay=(i%4)*0.1+'s';
-    obs.observe(el);
   });
+  btn.addEventListener('mouseenter', () => {
+    const val = parseInt(btn.dataset.val);
+    document.querySelectorAll('.star-btn').forEach((b, i) => {
+      b.classList.toggle('active', i < val);
+    });
+  });
+});
+document.getElementById('starPicker').addEventListener('mouseleave', () => {
+  document.querySelectorAll('.star-btn').forEach((b, i) => {
+    b.classList.toggle('active', i < selectedRating);
+  });
+});
+
+async function submitReview() {
+  const name    = document.getElementById('reviewName').value.trim();
+  const email   = document.getElementById('reviewEmail').value.trim();
+  const comment = document.getElementById('reviewComment').value.trim();
+  const msg     = document.getElementById('reviewMsg');
+
+  if (!name || !email || !comment || selectedRating === 0) {
+    msg.textContent = '⚠️ Please fill in all fields and select a star rating.';
+    msg.className = 'form-msg error';
+    msg.style.display = 'block';
+    return;
+  }
+
+  // Send to the same Formspree form with a type flag so you can identify reviews in your inbox
+  // ──────────────────────────────────────────────────────────────────────────────────────────
+  // IMPORTANT: Replace xlgznnzj with your actual Formspree form ID (same as contact form
+  // or a separate one at https://formspree.io)
+  // ──────────────────────────────────────────────────────────────────────────────────────────
+  try {
+    const res = await fetch('https://formspree.io/f/xlgznnzj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `⭐ New Review (${selectedRating}/5 stars) from ${name}`,
+        type: 'REVIEW',
+        name, email,
+        rating: `${selectedRating}/5 stars`,
+        review: comment
+      })
+    });
+
+    if (res.ok) {
+      msg.textContent = '✅ Thanks! Your review has been submitted and will appear after verification.';
+      msg.className = 'form-msg success';
+      document.getElementById('reviewName').value = '';
+      document.getElementById('reviewEmail').value = '';
+      document.getElementById('reviewComment').value = '';
+      selectedRating = 0;
+      document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch {
+    msg.textContent = '❌ Something went wrong. Please try again or email us directly.';
+    msg.className = 'form-msg error';
+  }
+  msg.style.display = 'block';
+}
+
+// ══════════════════════════════════════════════════════
+// 2) CONTACT FORM — Formspree submission
+// ══════════════════════════════════════════════════════
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const msg  = document.getElementById('contactMsg');
+  const btn  = form.querySelector('button[type=submit]');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      msg.textContent = '✅ Message sent! We\'ll get back to you within 24 hours.';
+      msg.className = 'form-msg success';
+      form.reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.textContent = '❌ Oops! Something went wrong. Please email us directly at hello@tobor.digital';
+    msg.className = 'form-msg error';
+  }
+  msg.style.display = 'block';
+  btn.textContent = 'Send message →';
+  btn.disabled = false;
+}
+
+// ══════════════════════════════════════════════════════
+// 3) BANK MODAL
+// ══════════════════════════════════════════════════════
+function openBankModal() {
+  document.getElementById('bankModal').classList.add('open');
+}
+function closeBankModal(e) {
+  if (e.target === document.getElementById('bankModal')) {
+    document.getElementById('bankModal').classList.remove('open');
+  }
+}
+function copyField(id) {
+  const val = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(val).then(() => {
+    const btn = document.querySelector(`[onclick="copyField('${id}')"]`);
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
 </script>
 </body>
 </html>
